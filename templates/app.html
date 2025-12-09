@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UITKYOD</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+</head>
+
+<body>
+
+    <form class="main" method="post" action="/download" id="downloadForm">
+        <h1>UITKYOD</h1>
+
+        <div class="inputContainer">
+            <select id="sm" name="sm" required>
+                <option value="youtube" selected>Youtube</option>
+                <option value="tiktok">TikTok</option>
+                <option value="facebook">Facebook</option>
+                <option value="instagram">Instagram</option>
+            </select>
+
+            <input type="url" id="url" name="url" placeholder="URL manzilni qo‘ying..." required>
+
+            <div class="fmCN">
+                <select id="fm" name="fm" required>
+                    <option value="mp4" selected>mp4</option>
+                    <option value="mp3">mp3</option>
+                    <option value="webm">webm</option>
+                </select>
+            </div>
+        </div>
+
+        <button type="submit">Yuklab olish</button>
+
+        <div class="pb" id="progressContainer">
+            <div id="progress-container">
+                <div id="progress-bar"></div>
+            </div>
+            <div id="progress-text">Tayyorlanmoqda... (0%)</div>
+        </div>
+    </form>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+
+</html>

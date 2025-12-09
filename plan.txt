@@ -1,0 +1,51 @@
+How to make universal social media video and music downloader tool plan.
+
+1. HTML Structure
+
+    ✅ 1.1 Core components (dropdown, input, button, progress bar) <-- done
+
+    ✅ 1.2 Apply basic functionality (link input, selection options) <-- done
+
+    ✅ 1.3 Debug layout and interactions <-- done
+
+2. Backend Logic / Functions
+
+    ✅ 2.1 Start applying main functions step-by-step
+
+    ✅ 2.2 Debug
+
+    ✅ 2.3 Test
+
+    ⚙️ 2.4 Add platform detection (e.g., auto-detect YouTube, TikTok, Instagram, etc.)
+
+    ⚙️ 2.5 Use a universal backend tool — e.g., integrate with yt-dlp or a Node/Python wrapper
+
+    ⚙️ 2.6 Handle errors and edge cases (invalid links, unavailable content, etc.)
+
+3. Polishing / User Experience
+
+    ✅ 3.1 Add gothic / dramatic theme
+
+    ✅ 3.2 Remove bloats
+
+    ✅ 3.3 Testing
+
+    🎵 3.4 Add download format options (video/audio, quality, file naming)
+
+    ⚡ 3.5 Add async loading / progress feedback (spinners, download percentage)
+
+    📱 3.6 Make it responsive (mobile-friendly layout)
+
+4. Security / Legal Check
+
+    ⚖️ 4.1 Make sure it respects terms of service (avoid hosting copyrighted content)
+
+    ⚙️ 4.2 Sanitize user input (prevent code injection or abuse)
+
+5. Publish
+
+    ✅ 5.1 Final testing
+
+    ☁️ 5.2 Deploy frontend + backend (Netlify/Vercel + small backend server if needed)
+
+    📦 5.3 Create README / usage guide
