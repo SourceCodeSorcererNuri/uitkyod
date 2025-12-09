@@ -20,6 +20,57 @@ def index():
 
 @app.route('/download', methods=['POST'])
 def download():
+    # Get the cookie content from the environment variable (NEW)
+    cookies_content = os.environ.get('YTDLP_COOKIES')
+    cookies_path = None
+
+    # Write cookies to a temporary file if they exist (NEW)
+    if cookies_content:
+        # Create a unique temporary file path for the cookies
+        cookies_path = os.path.join(DOWNLOAD_DIR, f'cookies_{uuid.uuid4()}.txt')
+        try:
+            with open(cookies_path, 'w', encoding='utf-8') as f:
+                f.write(cookies_content)
+        except Exception:
+            # Handle error writing cookie file
+            cookies_path = None # Reset path if writing failed
+
+    # 2. Extract Metadata Command Update
+    # Use the cleaned_url from the previous fix
+    meta_command = ['yt-dlp', '--dump-json']
+    if cookies_path:
+        # Pass the cookies file path to yt-dlp (NEW)
+        meta_command.extend(['--cookies', cookies_path])
+        
+    meta_command.extend(['--', cleaned_url])
+
+# ... (Execute metadata extraction process) ...
+
+    # 4. Construct yt-dlp command for download
+    # ... (Your existing command setup) ...
+    command = ['yt-dlp', cleaned_url, '-o', f'{temp_filepath}.%(ext)s']
+    
+    if cookies_path:
+        # Add cookies to the final download command as well (NEW)
+        command.extend(['--cookies', cookies_path])
+
+    # ... (Set format-specific options) ...
+
+# ... (Execute download process) ...
+
+    # 8. Clean up the temporary file (including cookies) after the response is sent (NEW)
+    @response.call_on_close
+    def cleanup():
+        try:
+            os.remove(full_path)
+            # Clean up the temporary cookie file (NEW)
+            if cookies_path and os.path.exists(cookies_path):
+                 os.remove(cookies_path)
+        except Exception as e:
+            print(f"Error cleaning up files: {e}")
+            
+    return response
+    
     """Handles the media download request, cleaning the title and URL."""
     # 1. Get form data
     url = request.form.get('url')
